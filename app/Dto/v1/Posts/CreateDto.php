@@ -20,4 +20,7 @@ class CreateDto extends Data
 
     #[Rule(['required', 'mimes:mp3', 'max:256000'])]
     public UploadedFile $audio_file;
+
+    #[Rule(['required', 'array', 'min:1', 'exists:tags,id'])]
+    public array $tag_ids;
 }

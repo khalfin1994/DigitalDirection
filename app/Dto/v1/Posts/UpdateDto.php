@@ -23,4 +23,7 @@ class UpdateDto extends Data
 
     #[Enum(StatusEnum::class)]
     public ?StatusEnum $status;
+
+    #[Rule(['nullable', 'array', 'min:1', 'exists:tags,id'])]
+    public ?array $tag_ids;
 }

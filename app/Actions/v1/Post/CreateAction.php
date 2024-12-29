@@ -26,6 +26,11 @@ class CreateAction
             'user_id'   => Auth::id(),
         ]);
 
+        $post->tags()->attach($dto->tag_ids, [
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
         return $post;
     }
 }

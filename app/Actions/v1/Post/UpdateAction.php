@@ -23,6 +23,10 @@ class UpdateAction
 
             $post->update($data);
 
+            if ($dto->tag_ids) {
+                $post->tags()->sync($dto->tag_ids);
+            }
+
             return $post;
         }
 
