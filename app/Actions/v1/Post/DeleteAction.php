@@ -2,14 +2,21 @@
 
 namespace App\Actions\v1\Post;
 
-use App\Dto\v1\Authentication\RegisterDto;
-use App\Models\User;
+
+use App\Dto\v1\Posts\DeleteDto;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
 
 class DeleteAction
 {
-    public function execute(RegisterDto $dto)
+    public function execute(DeleteDto $dto)
     {
-        $user =  User::create($dto->toArray());
-        return $user->createToken('auth_token')->plainTextToken;
+        $post = Post::findOrFail($dto->id);
+
+        if ($post->user_id == Auth::id()) {
+            return $post->delete();
+        }
+
+        return false;
     }
 }

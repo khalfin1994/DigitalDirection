@@ -17,6 +17,8 @@ RUN npm run
 
 RUN apt-get update && apt-get install -y bash
 
+RUN apt-get update && apt-get install -y ffmpeg
+
 RUN echo "upload_max_filesize = 512M\npost_max_size = 512M" > /usr/local/etc/php/conf.d/uploads.ini && \
     echo "memory_limit=512M" > /usr/local/etc/php/conf.d/memory-limit.ini
 

@@ -2,7 +2,9 @@
 
 namespace App\Dto\v1\Posts;
 
+use App\Enums\StatusEnum;
 use Spatie\LaravelData\Attributes\MapName;
+use Spatie\LaravelData\Attributes\Validation\Enum;
 use Spatie\LaravelData\Attributes\Validation\Rule;
 use Spatie\LaravelData\Data;
 use Spatie\LaravelData\Mappers\SnakeCaseMapper;
@@ -12,6 +14,9 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 #[MapName(SnakeCaseMapper::class)]
 class UpdateDto extends Data
 {
+    #[Rule(['required', 'integer', 'min:1'])]
+    public int $id;
+
     #[Rule(['nullable', 'string', 'max:100'])]
     public ?string $title;
 
@@ -20,4 +25,7 @@ class UpdateDto extends Data
 
     #[Rule(['nullable', 'max:512000'])]
     public ?UploadedFile $audio_file;
+
+    #[Enum(StatusEnum::class)]
+    public ?StatusEnum $status;
 }
