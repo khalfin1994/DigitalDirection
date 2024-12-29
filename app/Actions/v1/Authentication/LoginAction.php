@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\v1;
+namespace App\Actions\v1\Authentication;
 
 use App\Dto\v1\Authentication\LoginDto;
 use App\Models\User;

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\v1;
 
-use App\Actions\v1\LoginAction;
-use App\Actions\v1\RegisterAction;
+use App\Actions\v1\Authentication\LoginAction;
+use App\Actions\v1\Authentication\RegisterAction;
 use App\Dto\v1\Authentication\LoginDto;
 use App\Dto\v1\Authentication\RegisterDto;
 use App\Http\Controllers\Controller;

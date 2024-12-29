@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Actions\v1;
+namespace App\Actions\v1\Post;
 
 use App\Dto\v1\Authentication\RegisterDto;
 use App\Models\User;
 
-class RegisterAction
+class ListAction
 {
     public function execute(RegisterDto $dto)
     {
