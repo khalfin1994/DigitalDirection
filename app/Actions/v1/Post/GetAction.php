@@ -2,14 +2,13 @@
 
 namespace App\Actions\v1\Post;
 
-use App\Dto\v1\Authentication\RegisterDto;
-use App\Models\User;
+use App\Dto\v1\Posts\GetDto;
+use App\Models\Post;
 
 class GetAction
 {
-    public function execute(RegisterDto $dto)
+    public function execute(GetDto $dto)
     {
-        $user =  User::create($dto->toArray());
-        return $user->createToken('auth_token')->plainTextToken;
+        return Post::with(['tags:id,name'])->findOrFail($dto->id);
     }
 }

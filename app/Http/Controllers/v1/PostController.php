@@ -4,6 +4,8 @@ namespace App\Http\Controllers\v1;
 
 use App\Actions\v1\Post\CreateAction;
 use App\Actions\v1\Post\DeleteAction;
+use App\Actions\v1\Post\GetAction;
+use App\Actions\v1\Post\ListAction;
 use App\Actions\v1\Post\UpdateAction;
 use App\Dto\v1\Posts\CreateDto;
 use App\Dto\v1\Posts\DeleteDto;

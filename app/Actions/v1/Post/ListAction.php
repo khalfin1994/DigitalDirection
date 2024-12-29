@@ -2,14 +2,27 @@
 
 namespace App\Actions\v1\Post;
 
-use App\Dto\v1\Authentication\RegisterDto;
-use App\Models\User;
+use App\Dto\v1\Posts\ListDto;
+use App\Http\Resources\v1\PostResource;
+use App\Models\Post;
+use App\Queries\Posts\PostsQuery;
 
 class ListAction
 {
-    public function execute(RegisterDto $dto)
+    public function execute(ListDto $dto)
     {
-        $user =  User::create($dto->toArray());
-        return $user->createToken('auth_token')->plainTextToken;
+        $query = new PostsQuery(Post::query()->with('tags'), $dto);
+        $posts = $query->paginate(!empty($dto->per_page) ? $dto->per_page : 10);
+
+        return [
+            'posts' => PostResource::collection($posts),
+            'pagination' => [
+                'total' => $posts->total(),
+                'count' => $posts->count(),
+                'per_page' => $posts->perPage(),
+                'current_page' => $posts->currentPage(),
+                'total_pages' => $posts->lastPage()
+            ]
+        ];
     }
 }
