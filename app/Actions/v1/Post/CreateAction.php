@@ -15,14 +15,14 @@ class CreateAction
     {
         $audioCompressionService = new AudioFileCompressionAction();
 
-        $audioFilePath = Storage::disk('local')->putFile('public/files', $dto->audio_file);
+        $audioFilePath = Storage::disk('local')->putFile('original', $dto->audio_file);
 
         $compressedFilePath = $audioCompressionService->compress($audioFilePath);
 
         $post = Post::create([
             'title'   => $dto->title,
             'description' => $dto->description,
-            'audio_file' => Storage::disk('local')->putFile('public/files/compressed', new File($compressedFilePath)),
+            'audio_file' => Storage::disk('local')->putFile('files/compressed', new File($compressedFilePath)),
             'user_id'   => Auth::id(),
         ]);
 

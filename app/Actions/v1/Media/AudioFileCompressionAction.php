@@ -20,7 +20,7 @@ class AudioFileCompressionAction
             throw new Exception("File not found: " . $inputFile);
         }
 
-        $compressedDir = storage_path('app/public/files/compressed');
+        $compressedDir = storage_path('files/compressed');
         if (!file_exists($compressedDir)) {
             mkdir($compressedDir, 0777, true);
         }
